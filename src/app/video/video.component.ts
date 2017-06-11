@@ -6,21 +6,31 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./video.component.css']
 })
 export class VideoComponent implements OnInit {
-  @Output() public width: EventEmitter<string> = new EventEmitter();
-  @Output() public height: EventEmitter<string> = new EventEmitter();
+  width: number;
+  height: number;
   constructor() { }
 
   ngOnInit() {
     this.addEvent(window, "resize", this.resizeEvent)
   }
 
+  getVideoVolume(): number {
+    return (this.width * this.height) / this.getScreenVolume();
+  }
 
+  getScreenWidth() {
+    return screen.width;
+  }
+  getScreenHeight() {
+    return screen.height;
+  }
+  getScreenVolume() {
+    return this.getScreenWidth() * this.getScreenHeight();
+  }
 
   resizeEvent = (event) => {
-    this.width.next(event.target.innerWidth);
-    this.height.next(event.target.innerHeight);
-    console.log(event.target.innerWidth);
-    console.log(event.target.innerHeight);
+    this.width = event.target.innerWidth;
+    this.height = event.target.innerHeight;
   }
   addEvent = (object, type, callback) => {
     if (object == null || typeof (object) == 'undefined') return;
