@@ -1,0 +1,18 @@
+<div style="resize:both">
+  <div width="100%" height="100%">
+    <iframe id="form-iframe"  src="https://www.youtube.com/embed/5StzaSBF9nY" frameborder="0" allowfullscreen
+      (load)="onload($event)"
+    >
+    </iframe>
+  </div>
+
+  <div>
+    Width: {{width}} Height: {{height}} Volume: {{width * height}}
+  </div>
+  <div>
+    Screen Width: {{getScreenWidth()}} Screen Height: {{getScreenHeight()}} Screen Volume: {{getScreenVolume()}}
+  </div>
+  <div>
+    Percentage of screen: {{getVideoVolume()}}
+  </div>
+</div>
