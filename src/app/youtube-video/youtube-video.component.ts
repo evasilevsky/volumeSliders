@@ -10,7 +10,7 @@ export class YoutubeVideoComponent implements OnInit {
   height: number;
   el: HTMLFrameElement;
   player: YT.Player;
-  private id: string = 'qDuKsiwS5xw';
+  private id: string = '5StzaSBF9nY';
   constructor() {
   }
 
@@ -38,6 +38,7 @@ export class YoutubeVideoComponent implements OnInit {
 
     this.player.getIframe().width = this.width.toString();
     this.player.getIframe().height = this.height.toString();
+    this.player.setVolume(this.getVideoVolume() * 100);
     // this.el.width = this.width;
     // this.el.height = this.height;
   }
