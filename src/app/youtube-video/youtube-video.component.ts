@@ -9,7 +9,10 @@ export class YoutubeVideoComponent implements OnInit {
   width: number;
   height: number;
   el: HTMLFrameElement;
-  constructor() { }
+  player: YT.Player;
+  private id: string = 'qDuKsiwS5xw';
+  constructor() {
+  }
 
   ngOnInit() {
     this.addEvent(window, "resize", this.resizeEvent)
@@ -32,9 +35,17 @@ export class YoutubeVideoComponent implements OnInit {
   resizeEvent = (event) => {
     this.width = event.target.innerWidth;
     this.height = event.target.innerHeight;
-    this.el.width = this.width;
-    this.el.height = this.height;
+
+    this.player.getIframe().width = this.width.toString();
+    this.player.getIframe().height = this.height.toString();
+    // this.el.width = this.width;
+    // this.el.height = this.height;
   }
+
+  onStateChange(event) {
+    console.log('player state', event.data);
+  }
+
   addEvent = (object, type, callback) => {
     if (object == null || typeof (object) == 'undefined') return;
     if (object.addEventListener) {
@@ -46,13 +57,17 @@ export class YoutubeVideoComponent implements OnInit {
     }
   }
 
-  onload(ev: Event) {
-    this.el = <HTMLFrameElement>ev.srcElement;
-    console.log(this.el.clientWidth + ", " + this.el.clientHeight);
-    this.el.width = this.el.clientWidth;
-    this.el.height =  this.el.clientHeight;
-  }
+  // onload(ev: Event) {
+  //   this.el = <HTMLFrameElement>ev.srcElement;
+  //   console.log(this.el.clientWidth + ", " + this.el.clientHeight);
+  //   this.el.width = this.el.clientWidth;
+  //   this.el.height =  this.el.clientHeight;
+  // }
 
+  savePlayer(player) {
+    this.player = player;
+    console.log('player instance', player)
+  }
 
   // onYouTubeIframeAPIReady() {
   //   var player;

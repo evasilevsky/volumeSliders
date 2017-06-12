@@ -1,9 +1,14 @@
 <div style="resize:both">
-  <div width="100%" height="100%">
-    <iframe id="form-iframe"  src="https://www.youtube.com/embed/5StzaSBF9nY" frameborder="0" allowfullscreen
+  <div id="player" width="100%" height="100%">
+    <youtube-player
+      [videoId]="id"
+      (ready)="savePlayer($event)"
+      (change)="onStateChange($event)"
+    ></youtube-player>
+    <!--<iframe id="form-iframe"  src="https://www.youtube.com/embed/5StzaSBF9nY" frameborder="0" allowfullscreen
       (load)="onload($event)"
     >
-    </iframe>
+    </iframe>-->
   </div>
 
   <div>
