@@ -10,7 +10,7 @@ export class YoutubeVideoComponent implements OnInit {
   height: number;
   el: HTMLFrameElement;
   player: YT.Player;
-  private id: string = '5StzaSBF9nY';
+  public id: string = '5StzaSBF9nY';
   constructor() {
   }
 
